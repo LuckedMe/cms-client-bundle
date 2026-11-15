@@ -15,6 +15,11 @@ return static function (DefinitionConfigurator $definition): void {
             ->scalarNode('client_username')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('client_password')->isRequired()->cannotBeEmpty()->end()
             ->booleanNode('caching')->defaultTrue()->end()
+            ->arrayNode('cache_clear_pools')
+                ->info('Extra cache pools to clear on /cache-clear')
+                ->scalarPrototype()->end()
+                ->defaultValue([])
+            ->end()
             ->integerNode('cache_default_lifetime')->defaultValue(1800)->min(0)->end()
             ->integerNode('cache_banner_lifetime')->defaultValue(300)->min(0)->end()
         ->end();
