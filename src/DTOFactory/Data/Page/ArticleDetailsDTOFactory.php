@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Vtsot\CmsAdminClientBundle\DTOFactory\Data\Page;
+
+use Vtsot\CmsAdminClientBundle\Contract\Dictionary\PageSitemapChangeFrequency;
+use Vtsot\CmsAdminClientBundle\Contract\Dictionary\PageSitemapPriority;
+use Vtsot\CmsAdminClientBundle\Contract\Dictionary\PageType;
+use Vtsot\CmsAdminClientBundle\DTO\Data\Page\ArticleDetailsDTO;
+
+readonly class ArticleDetailsDTOFactory
+{
+    public function fromAPI(array $data): ArticleDetailsDTO
+    {
+        return new ArticleDetailsDTO(
+            id: $data['id'] ?? '',
+            slug: $data['slug'] ?? '',
+            type: PageType::Article,
+            title: $data['title'] ?? null,
+            imageAlt: $data['image_alt'] ?? null,
+            image: $data['image'] ?? null,
+            description: $data['description'] ?? null,
+            content: $data['content'] ?? null,
+            sources: $data['sources'] ?? null,
+            redirect: $data['redirect'] ?? null,
+            codeBlock: $data['code_block'] ?? null,
+            metaTitle: $data['meta_title'] ?? null,
+            metaKeywords: $data['meta_keywords'] ?? null,
+            metaDescription: $data['meta_description'] ?? null,
+            ogTitle: $data['og_title'] ?? null,
+            ogDescription: $data['og_description'] ?? null,
+            ogImage: $data['og_image'] ?? null,
+            indexed: $data['indexed'] ?? true,
+            sitemapChangeFrequency: PageSitemapChangeFrequency::tryFrom((string) ($data['sitemap_change_frequency'] ?? '')) ?? PageSitemapChangeFrequency::DEFAULT,
+            sitemapPriority: PageSitemapPriority::tryFrom((string) ($data['sitemap_priority'] ?? '')) ?? PageSitemapPriority::DEFAULT,
+        );
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "name": "vtsot/cms-admin-client-bundle",
+    "description": "Symfony bundle: client for the CMS admin API",
+    "type": "symfony-bundle",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.4",
+        "symfony/framework-bundle": "^8.1",
+        "symfony/http-client": "^8.1",
+        "symfony/yaml": "^8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vtsot\\CmsAdminClientBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vtsot\\CmsAdminClientBundle\\Tests\\": "tests/"
+        }
+    }
+}
