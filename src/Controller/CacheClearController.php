@@ -23,6 +23,7 @@ use function array_unique;
 use function array_values;
 use function implode;
 use function sprintf;
+use function Symfony\Component\String\s;
 
 #[AsController]
 final class CacheClearController
@@ -93,7 +94,8 @@ final class CacheClearController
             );
             $process->run();
 
-            $cleanOutput = static fn($output) => trim(preg_replace(['/\s+/', '#\s*//+\s*#'], ' ', $output));
+            $cleanOutput = static fn($str) => s(preg_replace(['/\s+/', '#\s*//+\s*#'], ' ', $str))
+                ->trim()->toString();
 
             $output[] = [
                 'code'    => $process->getExitCodeText(),
