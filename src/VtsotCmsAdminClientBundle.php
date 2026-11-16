@@ -12,8 +12,8 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 final class VtsotCmsAdminClientBundle extends AbstractBundle
 {
     private const string DEFAULT_LOCALE      = 'en_GB';
-    private const int CACHE_DEFAULT_LIFETIME = 1800;
-    private const int CACHE_BANNER_LIFETIME  = 300;
+    private const int CACHE_DEFAULT_LIFETIME = 86400;
+    private const int CACHE_BANNER_LIFETIME  = 3600;
     protected string $extensionAlias         = 'vtsot_cms_admin_client';
 
     public function configure(DefinitionConfigurator $definition): void

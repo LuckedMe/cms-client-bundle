@@ -20,7 +20,7 @@ return static function (DefinitionConfigurator $definition): void {
                 ->scalarPrototype()->end()
                 ->defaultValue([])
             ->end()
-            ->integerNode('cache_default_lifetime')->defaultValue(1800)->min(0)->end()
-            ->integerNode('cache_banner_lifetime')->defaultValue(300)->min(0)->end()
+            ->integerNode('cache_default_lifetime')->defaultValue(86400)->min(0)->end()
+            ->integerNode('cache_banner_lifetime')->defaultValue(3600)->min(0)->end()
         ->end();
 };
