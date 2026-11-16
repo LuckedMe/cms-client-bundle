@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Contract\Dictionary;
+namespace LuckedMe\CmsClientBundle\Contract\Dictionary;
 
-use Vtsot\CmsAdminClientBundle\Contract\Dictionary\Traits\EnumValuesTrait;
+use LuckedMe\CmsClientBundle\Contract\Dictionary\Traits\EnumValuesTrait;
 
 enum PageSitemapPriority: string
 {

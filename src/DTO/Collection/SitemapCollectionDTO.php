@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTO\Collection;
+namespace LuckedMe\CmsClientBundle\DTO\Collection;
 
 readonly class SitemapCollectionDTO
 {

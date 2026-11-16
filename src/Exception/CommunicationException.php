@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Exception;
+namespace LuckedMe\CmsClientBundle\Exception;
 
 use Throwable;
 

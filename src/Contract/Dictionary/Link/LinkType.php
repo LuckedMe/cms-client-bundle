@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Contract\Dictionary\Link;
+namespace LuckedMe\CmsClientBundle\Contract\Dictionary\Link;
 
 enum LinkType: string
 {

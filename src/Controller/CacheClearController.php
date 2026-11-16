@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Controller;
+namespace LuckedMe\CmsClientBundle\Controller;
 
 use Exception;
 use RuntimeException;
@@ -34,9 +34,9 @@ final class CacheClearController
     public function __invoke(
         Request $request,
         KernelInterface $kernel,
-        #[Autowire(param: 'vtsot_cms_admin_client.site_token')]
+        #[Autowire(param: 'lucked_me_cms_client.site_token')]
         string $token,
-        #[Autowire(param: 'vtsot_cms_admin_client.cache_clear_pools')]
+        #[Autowire(param: 'lucked_me_cms_client.cache_clear_pools')]
         array $extraPools = [],
         #[Autowire(service: 'cache.global_clearer')]
         ?Psr6CacheClearer $poolClearer = null,
@@ -56,8 +56,8 @@ final class CacheClearController
         $console = $kernel->getProjectDir() . '/bin/console';
 
         $pools = [
-            'vtsot_cms_admin_client.cache',
-            'vtsot_cms_admin_client.banner.cache',
+            'lucked_me_cms_client.cache',
+            'lucked_me_cms_client.banner.cache',
             ...$extraPools,
         ];
 

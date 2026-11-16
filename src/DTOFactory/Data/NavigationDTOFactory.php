@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTOFactory\Data;
+namespace LuckedMe\CmsClientBundle\DTOFactory\Data;
 
-use Vtsot\CmsAdminClientBundle\DTO\Data\NavigationDTO;
+use LuckedMe\CmsClientBundle\DTO\Data\NavigationDTO;
 
 use function array_key_exists;
 use function is_array;

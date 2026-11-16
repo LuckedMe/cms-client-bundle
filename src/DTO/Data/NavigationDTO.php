@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTO\Data;
+namespace LuckedMe\CmsClientBundle\DTO\Data;
 
 /**
  * @see NavigationDTOFactory

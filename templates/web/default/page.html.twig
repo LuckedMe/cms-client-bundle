@@ -1,6 +1,6 @@
-{% extends '@VtsotCmsAdminClient/web/layout.page.html.twig' %}
-{# @var \Vtsot\CmsAdminClientBundle\DTO\Data\SiteDTO site #}
-{# @var \Vtsot\CmsAdminClientBundle\DTO\Data\Page\PageDetailsDTO page #}
+{% extends '@LuckedMeCmsClient/web/layout.page.html.twig' %}
+{# @var \LuckedMe\CmsClientBundle\DTO\Data\SiteDTO site #}
+{# @var \LuckedMe\CmsClientBundle\DTO\Data\Page\PageDetailsDTO page #}
 
 
 {% block after_page_content %}
@@ -8,7 +8,7 @@
     {% if page.relatedArticlesTitle and page.relatedArticles %}
         <h2>{{ page.relatedArticlesTitle }}</h2>
 
-        {# @var \Vtsot\CmsAdminClientBundle\DTO\Data\Page\ArticleInfoDTO article #}
+        {# @var \LuckedMe\CmsClientBundle\DTO\Data\Page\ArticleInfoDTO article #}
         {% for article in page.relatedArticles %}
             <div>
                 <h3>{{ article.title }}</h3>

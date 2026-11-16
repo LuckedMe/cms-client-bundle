@@ -1,5 +1,5 @@
 {
-    "name": "vtsot/cms-admin-client-bundle",
+    "name": "lucked-me/cms-client-bundle",
     "description": "Symfony bundle: client for the CMS admin API",
     "type": "symfony-bundle",
     "license": "proprietary",
@@ -13,12 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Vtsot\\CmsAdminClientBundle\\": "src/"
+            "LuckedMe\\CmsClientBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Vtsot\\CmsAdminClientBundle\\Tests\\": "tests/"
+            "LuckedMe\\CmsClientBundle\\Tests\\": "tests/"
         }
     }
 }

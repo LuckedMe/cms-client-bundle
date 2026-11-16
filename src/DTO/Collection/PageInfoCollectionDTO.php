@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTO\Collection;
+namespace LuckedMe\CmsClientBundle\DTO\Collection;
 
-use Vtsot\CmsAdminClientBundle\DTO\Data\Page\ArticleInfoDTO;
-use Vtsot\CmsAdminClientBundle\DTO\Data\Page\PageInfoDTO;
+use LuckedMe\CmsClientBundle\DTO\Data\Page\ArticleInfoDTO;
+use LuckedMe\CmsClientBundle\DTO\Data\Page\PageInfoDTO;
 
 final readonly class PageInfoCollectionDTO extends AbstractCollectionDTO
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTO\Collection;
+namespace LuckedMe\CmsClientBundle\DTO\Collection;
 
-use Vtsot\CmsAdminClientBundle\DTO\Collection\Meta\CollectionFiltersDTO;
-use Vtsot\CmsAdminClientBundle\DTO\Collection\Meta\CollectionMetaDTO;
-use Vtsot\CmsAdminClientBundle\DTO\Collection\Meta\CollectionPaginatorDTO;
+use LuckedMe\CmsClientBundle\DTO\Collection\Meta\CollectionFiltersDTO;
+use LuckedMe\CmsClientBundle\DTO\Collection\Meta\CollectionMetaDTO;
+use LuckedMe\CmsClientBundle\DTO\Collection\Meta\CollectionPaginatorDTO;
 
 abstract readonly class AbstractCollectionDTO
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Service;
+namespace LuckedMe\CmsClientBundle\Service;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -11,10 +11,10 @@ use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Throwable;
-use Vtsot\CmsAdminClientBundle\DTO\Data\BannerDTO;
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\BannerDTOFactory;
-use Vtsot\CmsAdminClientBundle\Exception\CommunicationException;
-use Vtsot\CmsAdminClientBundle\Service\Traits\ResolveErrorsDetailsTrait;
+use LuckedMe\CmsClientBundle\DTO\Data\BannerDTO;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\BannerDTOFactory;
+use LuckedMe\CmsClientBundle\Exception\CommunicationException;
+use LuckedMe\CmsClientBundle\Service\Traits\ResolveErrorsDetailsTrait;
 
 final readonly class BannerService
 {
@@ -24,13 +24,13 @@ final readonly class BannerService
         private AuthService $auth,
         private BannerDTOFactory $bannerDTOFactory,
 
-        #[Autowire(param: 'vtsot_cms_admin_client.caching')]
+        #[Autowire(param: 'lucked_me_cms_client.caching')]
         private bool $caching,
 
-        #[Autowire(service: 'vtsot_cms_admin_client.banner.cache')]
+        #[Autowire(service: 'lucked_me_cms_client.banner.cache')]
         private CacheInterface $cache,
 
-        #[Autowire(service: 'vtsot_cms_admin_client.content.http_client')]
+        #[Autowire(service: 'lucked_me_cms_client.content.http_client')]
         private HttpClientInterface $httpClient,
     ) {
     }

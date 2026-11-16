@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Service;
+namespace LuckedMe\CmsClientBundle\Service;
 
 use Psr\Cache\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -12,10 +12,10 @@ use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Throwable;
-use Vtsot\CmsAdminClientBundle\DTO\Data\SiteDTO;
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\SiteDTOFactory;
-use Vtsot\CmsAdminClientBundle\Exception\CommunicationException;
-use Vtsot\CmsAdminClientBundle\Service\Traits\ResolveErrorsDetailsTrait;
+use LuckedMe\CmsClientBundle\DTO\Data\SiteDTO;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\SiteDTOFactory;
+use LuckedMe\CmsClientBundle\Exception\CommunicationException;
+use LuckedMe\CmsClientBundle\Service\Traits\ResolveErrorsDetailsTrait;
 
 use function sha1;
 
@@ -27,13 +27,13 @@ final readonly class SiteService
         private AuthService $auth,
         private SiteDTOFactory $siteDTOFactory,
 
-        #[Autowire(param: 'vtsot_cms_admin_client.caching')]
+        #[Autowire(param: 'lucked_me_cms_client.caching')]
         private bool $caching,
 
-        #[Autowire(service: 'vtsot_cms_admin_client.cache')]
+        #[Autowire(service: 'lucked_me_cms_client.cache')]
         private CacheInterface $cache,
 
-        #[Autowire(service: 'vtsot_cms_admin_client.content.http_client')]
+        #[Autowire(service: 'lucked_me_cms_client.content.http_client')]
         private HttpClientInterface $httpClient,
     ) {
     }

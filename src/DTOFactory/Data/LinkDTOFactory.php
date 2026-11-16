@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTOFactory\Data;
+namespace LuckedMe\CmsClientBundle\DTOFactory\Data;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Vtsot\CmsAdminClientBundle\Contract\Dictionary\Link\LinkTarget;
-use Vtsot\CmsAdminClientBundle\Contract\Dictionary\Link\LinkType;
-use Vtsot\CmsAdminClientBundle\DTO\Data\LinkDTO;
+use LuckedMe\CmsClientBundle\Contract\Dictionary\Link\LinkTarget;
+use LuckedMe\CmsClientBundle\Contract\Dictionary\Link\LinkType;
+use LuckedMe\CmsClientBundle\DTO\Data\LinkDTO;
 
 use function in_array;
 

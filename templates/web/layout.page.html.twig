@@ -1,13 +1,13 @@
-{% extends '@VtsotCmsAdminClient/web/layout.main.html.twig' %}
-{# @var \Vtsot\CmsAdminClientBundle\DTO\Data\SiteDTO site #}
-{# @var \Vtsot\CmsAdminClientBundle\DTO\Data\Page\PageDetailsDTO page #}
-{# @var \Vtsot\CmsAdminClientBundle\DTO\Data\Page\ArticleDetailsDTO page #}
+{% extends '@LuckedMeCmsClient/web/layout.main.html.twig' %}
+{# @var \LuckedMe\CmsClientBundle\DTO\Data\SiteDTO site #}
+{# @var \LuckedMe\CmsClientBundle\DTO\Data\Page\PageDetailsDTO page #}
+{# @var \LuckedMe\CmsClientBundle\DTO\Data\Page\ArticleDetailsDTO page #}
 
 
 {% block content %}
 
     {% block page_navigation %}
-        {% import '@VtsotCmsAdminClient/web/_macros/navigation/navigation-tree-macros.html.twig' as functions %}
+        {% import '@LuckedMeCmsClient/web/_macros/navigation/navigation-tree-macros.html.twig' as functions %}
 
         {% set mainNavigation = site.mainNavigation %}
         {% if mainNavigation is not empty %}

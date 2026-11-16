@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Tests\Service;
+namespace LuckedMe\CmsClientBundle\Tests\Service;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\Exception\TransportException;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\JsonMockResponse;
 use Symfony\Component\HttpClient\Response\MockResponse;
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\TokenDTOFactory;
-use Vtsot\CmsAdminClientBundle\Exception\CommunicationException;
-use Vtsot\CmsAdminClientBundle\Service\AuthService;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\TokenDTOFactory;
+use LuckedMe\CmsClientBundle\Exception\CommunicationException;
+use LuckedMe\CmsClientBundle\Service\AuthService;
 
 use const JSON_THROW_ON_ERROR;
 

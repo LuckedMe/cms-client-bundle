@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTO\Data;
+namespace LuckedMe\CmsClientBundle\DTO\Data;
 
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\TokenDTOFactory;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\TokenDTOFactory;
 
 /**
  * @see TokenDTOFactory

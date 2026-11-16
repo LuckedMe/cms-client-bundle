@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle;
+namespace LuckedMe\CmsClientBundle;
 
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-final class VtsotCmsAdminClientBundle extends AbstractBundle
+final class LuckedMeCmsClientBundle extends AbstractBundle
 {
     private const string DEFAULT_LOCALE      = 'en_GB';
     private const int CACHE_DEFAULT_LIFETIME = 86400;
     private const int CACHE_BANNER_LIFETIME  = 3600;
-    protected string $extensionAlias         = 'vtsot_cms_admin_client';
+    protected string $extensionAlias         = 'lucked_me_cms_client';
 
     public function configure(DefinitionConfigurator $definition): void
     {
@@ -30,7 +30,7 @@ final class VtsotCmsAdminClientBundle extends AbstractBundle
         $builder->prependExtensionConfig('framework', [
             'http_client' => [
                 'scoped_clients' => [
-                    'vtsot_cms_admin_client.auth.http_client' => [
+                    'lucked_me_cms_client.auth.http_client' => [
                         'base_uri'    => $config['api_auth_url'] ?? null,
                         'verify_peer' => false,
                         'headers'     => [
@@ -40,7 +40,7 @@ final class VtsotCmsAdminClientBundle extends AbstractBundle
                             'X-Site-Token'    => $config['site_token'] ?? '',
                         ],
                     ],
-                    'vtsot_cms_admin_client.content.http_client' => [
+                    'lucked_me_cms_client.content.http_client' => [
                         'base_uri'    => $config['api_content_url'] ?? null,
                         'verify_peer' => false,
                         'headers'     => [
@@ -52,8 +52,8 @@ final class VtsotCmsAdminClientBundle extends AbstractBundle
             ],
             'cache' => [
                 'pools' => [
-                    'vtsot_cms_admin_client.cache'        => ['default_lifetime' => $config['cache_default_lifetime'] ?? self::CACHE_DEFAULT_LIFETIME],
-                    'vtsot_cms_admin_client.banner.cache' => ['default_lifetime' => $config['cache_banner_lifetime'] ?? self::CACHE_BANNER_LIFETIME],
+                    'lucked_me_cms_client.cache'        => ['default_lifetime' => $config['cache_default_lifetime'] ?? self::CACHE_DEFAULT_LIFETIME],
+                    'lucked_me_cms_client.banner.cache' => ['default_lifetime' => $config['cache_banner_lifetime'] ?? self::CACHE_BANNER_LIFETIME],
                 ],
             ],
         ]);
@@ -65,7 +65,7 @@ final class VtsotCmsAdminClientBundle extends AbstractBundle
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         foreach ($config as $key => $value) {
-            $container->parameters()->set('vtsot_cms_admin_client.' . $key, $value);
+            $container->parameters()->set('lucked_me_cms_client.' . $key, $value);
         }
 
         $container->import('../config/services.yaml');

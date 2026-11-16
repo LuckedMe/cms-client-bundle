@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTO\Collection\Meta;
+namespace LuckedMe\CmsClientBundle\DTO\Collection\Meta;
 
 final readonly class CollectionPaginatorDTO
 {

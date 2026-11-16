@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTOFactory\Data\Page;
+namespace LuckedMe\CmsClientBundle\DTOFactory\Data\Page;
 
-use Vtsot\CmsAdminClientBundle\Contract\Dictionary\PageType;
-use Vtsot\CmsAdminClientBundle\DTO\Data\Page\ArticleInfoDTO;
+use LuckedMe\CmsClientBundle\Contract\Dictionary\PageType;
+use LuckedMe\CmsClientBundle\DTO\Data\Page\ArticleInfoDTO;
 
 readonly class ArticleInfoDTOFactory
 {

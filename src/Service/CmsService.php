@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Service;
+namespace LuckedMe\CmsClientBundle\Service;
 
 use Psr\Cache\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 use Twig\Error\Error as TwigError;
-use Vtsot\CmsAdminClientBundle\Contract\Dictionary\PageType;
+use LuckedMe\CmsClientBundle\Contract\Dictionary\PageType;
 
 use function sprintf;
 
@@ -58,8 +58,8 @@ readonly class CmsService
         }
 
         $view = match ($page->type) {
-            PageType::Article => '@VtsotCmsAdminClient/web/default/article.html.twig',
-            default           => '@VtsotCmsAdminClient/web/default/page.html.twig',
+            PageType::Article => '@LuckedMeCmsClient/web/default/article.html.twig',
+            default           => '@LuckedMeCmsClient/web/default/page.html.twig',
         };
 
         return new Response($this->twig->render($view, [

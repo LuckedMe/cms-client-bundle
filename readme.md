@@ -1,1 +1,1 @@
-# CMS admin client bundle
+# CMS client bundle

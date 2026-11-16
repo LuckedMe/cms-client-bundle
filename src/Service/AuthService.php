@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Service;
+namespace LuckedMe\CmsClientBundle\Service;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -10,23 +10,23 @@ use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Throwable;
-use Vtsot\CmsAdminClientBundle\DTO\Data\TokenDTO;
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\TokenDTOFactory;
-use Vtsot\CmsAdminClientBundle\Exception\CommunicationException;
-use Vtsot\CmsAdminClientBundle\Service\Traits\ResolveErrorsDetailsTrait;
+use LuckedMe\CmsClientBundle\DTO\Data\TokenDTO;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\TokenDTOFactory;
+use LuckedMe\CmsClientBundle\Exception\CommunicationException;
+use LuckedMe\CmsClientBundle\Service\Traits\ResolveErrorsDetailsTrait;
 
 final readonly class AuthService
 {
     use ResolveErrorsDetailsTrait;
 
     public function __construct(
-        #[Autowire(service: 'vtsot_cms_admin_client.auth.http_client')]
+        #[Autowire(service: 'lucked_me_cms_client.auth.http_client')]
         private HttpClientInterface $httpClient,
 
-        #[Autowire(param: 'vtsot_cms_admin_client.client_username')]
+        #[Autowire(param: 'lucked_me_cms_client.client_username')]
         private string $username,
 
-        #[Autowire(param: 'vtsot_cms_admin_client.client_password')]
+        #[Autowire(param: 'lucked_me_cms_client.client_password')]
         private string $password,
 
         private TokenDTOFactory $tokenDTOFactory,

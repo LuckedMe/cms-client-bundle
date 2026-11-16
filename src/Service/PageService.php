@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Service;
+namespace LuckedMe\CmsClientBundle\Service;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -11,16 +11,16 @@ use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Throwable;
-use Vtsot\CmsAdminClientBundle\Contract\Dictionary\PageType;
-use Vtsot\CmsAdminClientBundle\DTO\Collection\PageInfoCollectionDTO;
-use Vtsot\CmsAdminClientBundle\DTO\Data\Page\ArticleDetailsDTO;
-use Vtsot\CmsAdminClientBundle\DTO\Data\Page\PageDetailsDTO;
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\Page\ArticleDetailsDTOFactory;
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\Page\ArticleInfoDTOFactory;
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\Page\PageDetailsDTOFactory;
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\Page\PageInfoDTOFactory;
-use Vtsot\CmsAdminClientBundle\Exception\CommunicationException;
-use Vtsot\CmsAdminClientBundle\Service\Traits\ResolveErrorsDetailsTrait;
+use LuckedMe\CmsClientBundle\Contract\Dictionary\PageType;
+use LuckedMe\CmsClientBundle\DTO\Collection\PageInfoCollectionDTO;
+use LuckedMe\CmsClientBundle\DTO\Data\Page\ArticleDetailsDTO;
+use LuckedMe\CmsClientBundle\DTO\Data\Page\PageDetailsDTO;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\Page\ArticleDetailsDTOFactory;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\Page\ArticleInfoDTOFactory;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\Page\PageDetailsDTOFactory;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\Page\PageInfoDTOFactory;
+use LuckedMe\CmsClientBundle\Exception\CommunicationException;
+use LuckedMe\CmsClientBundle\Service\Traits\ResolveErrorsDetailsTrait;
 
 final readonly class PageService
 {
@@ -33,13 +33,13 @@ final readonly class PageService
         private ArticleInfoDTOFactory $articleInfoDTOFactory,
         private ArticleDetailsDTOFactory $articleDetailsDTOFactory,
 
-        #[Autowire(param: 'vtsot_cms_admin_client.caching')]
+        #[Autowire(param: 'lucked_me_cms_client.caching')]
         private bool $caching,
 
-        #[Autowire(service: 'vtsot_cms_admin_client.cache')]
+        #[Autowire(service: 'lucked_me_cms_client.cache')]
         private CacheInterface $cache,
 
-        #[Autowire(service: 'vtsot_cms_admin_client.content.http_client')]
+        #[Autowire(service: 'lucked_me_cms_client.content.http_client')]
         private HttpClientInterface $httpClient,
     ) {
     }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\DTO\Data;
+namespace LuckedMe\CmsClientBundle\DTO\Data;
 
-use Vtsot\CmsAdminClientBundle\Contract\Dictionary\Link\LinkTarget;
-use Vtsot\CmsAdminClientBundle\Contract\Dictionary\Link\LinkType;
-use Vtsot\CmsAdminClientBundle\DTOFactory\Data\LinkDTOFactory;
+use LuckedMe\CmsClientBundle\Contract\Dictionary\Link\LinkTarget;
+use LuckedMe\CmsClientBundle\Contract\Dictionary\Link\LinkType;
+use LuckedMe\CmsClientBundle\DTOFactory\Data\LinkDTOFactory;
 
 use function array_keys;
 use function array_map;

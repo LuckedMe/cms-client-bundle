@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vtsot\CmsAdminClientBundle\Contract\Dictionary\Traits;
+namespace LuckedMe\CmsClientBundle\Contract\Dictionary\Traits;
 
 use function array_column;
 use function array_combine;
