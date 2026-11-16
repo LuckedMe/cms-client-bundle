@@ -21,7 +21,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use function array_filter;
 use function array_unique;
 use function array_values;
-use function htmlspecialchars;
 use function implode;
 use function sprintf;
 use function Symfony\Component\String\s;
@@ -104,8 +103,8 @@ final class CacheClearController
             $output[] = [
                 'code'    => $process->getExitCodeText(),
                 'command' => sprintf('%s %s', implode(' ', $arguments), '--env=' . $env),
-                'output'  => htmlspecialchars($cleanOutput($process->getOutput())),
-                'errors'  => htmlspecialchars($cleanOutput($process->getErrorOutput())),
+                'output'  => $cleanOutput($process->getOutput()),
+                'errors'  => $cleanOutput($process->getErrorOutput()),
             ];
 
             $failed = $failed || !$process->isSuccessful();
