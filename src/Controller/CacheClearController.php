@@ -7,6 +7,7 @@ namespace LuckedMe\CmsClientBundle\Controller;
 use Exception;
 use RuntimeException;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -20,7 +21,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use function array_filter;
 use function array_unique;
 use function array_values;
-use function htmlspecialchars;
+use function implode;
+use function sprintf;
 
 #[AsController]
 final class CacheClearController
@@ -40,7 +42,8 @@ final class CacheClearController
         array $extraPools = [],
         #[Autowire(service: 'cache.global_clearer')]
         ?Psr6CacheClearer $poolClearer = null,
-    ): Response {
+    ): JsonResponse {
+
         if (!$request->headers->get('X-API-KEY')
             || $request->headers->get('X-API-KEY') !== $token
         ) {
@@ -80,7 +83,7 @@ final class CacheClearController
             $commands[] = ['cache:pool:clear', ...$pools];
         }
 
-        $output = '';
+        $output = [];
         $failed = false;
         foreach ($commands as $arguments) {
             $process = new Process(
@@ -90,14 +93,21 @@ final class CacheClearController
             );
             $process->run();
 
-            $output .= '$ ' . $process->getCommandLine() . "\n"
-                . $process->getOutput() . $process->getErrorOutput();
+            $cleanOutput = static fn($output) => trim(preg_replace(['/\s+/', '#\s*//+\s*#'], ' ', $output));
+
+            $output[] = [
+                'code'    => $process->getExitCodeText(),
+                'command' => sprintf('%s %s', implode(' ', $arguments), '--env=' . $env),
+                'output'  => $cleanOutput($process->getOutput()),
+                'errors'  => $cleanOutput($process->getErrorOutput()),
+            ];
+
             $failed = $failed || !$process->isSuccessful();
         }
 
-        return new Response(
-            '<pre>' . htmlspecialchars($output) . '</pre>',
-            $failed ? Response::HTTP_INTERNAL_SERVER_ERROR : Response::HTTP_OK,
+        return new JsonResponse(
+            data: $output,
+            status: $failed ? Response::HTTP_MULTI_STATUS : Response::HTTP_OK,
         );
     }
 }
