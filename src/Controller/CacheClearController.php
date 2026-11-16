@@ -30,7 +30,7 @@ final class CacheClearController
      *
      * @throws Exception
      */
-    #[Route(path: '/cms-admin-client/cache-clear', name: 'cms_admin_client.cache.clear')]
+    #[Route(path: '/lucked-me-cms-client/cache-clear', name: 'lucked_me_cms_client.cache.clear')]
     public function __invoke(
         Request $request,
         KernelInterface $kernel,
