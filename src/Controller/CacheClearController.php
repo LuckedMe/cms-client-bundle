@@ -10,11 +10,14 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Attribute\Route;
+
+use function htmlspecialchars;
 
 #[AsController]
 final class CacheClearController
@@ -32,6 +35,8 @@ final class CacheClearController
         string $token,
         #[Autowire(param: 'vtsot_cms_admin_client.cache_clear_pools')]
         array $extraPools = [],
+        #[Autowire(service: 'cache.global_clearer')]
+        ?Psr6CacheClearer $poolClearer = null,
     ): Response {
         if (!$request->headers->get('X-API-KEY')
             || $request->headers->get('X-API-KEY') !== $token
@@ -53,6 +58,13 @@ final class CacheClearController
             ...$extraPools,
         ];
 
+        // cache:pool:clear fails on an unknown pool (and then skips the rest),
+        // so keep only the pools that exist in this application
+        $pools = array_values(array_unique(array_filter(
+            $pools,
+            static fn (string $pool): bool => $poolClearer?->hasPool($pool) ?? false,
+        )));
+
         // Every command runs in its own process with a fresh kernel. Running
         // cache:clear in-process (several times) on the live kernel breaks it:
         // the first run switches the kernel to the temporary "pro_" cache
@@ -60,10 +72,10 @@ final class CacheClearController
         // 'Unable to write in the ".../var/cache/pro_" directory'.
         // The environment is the one of the running kernel (the old "--env"
         // option was ignored by the in-process application anyway).
-        $commands = [
-            ['cache:clear'],
-            ['cache:pool:clear', ...$pools],
-        ];
+        $commands = [['cache:clear']];
+        if ([] !== $pools) {
+            $commands[] = ['cache:pool:clear', ...$pools];
+        }
 
         $output = '';
         $failed = false;
