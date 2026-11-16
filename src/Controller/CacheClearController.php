@@ -94,8 +94,12 @@ final class CacheClearController
             );
             $process->run();
 
-            $cleanOutput = static fn($str) => s(preg_replace(['/\s+/', '#\s*//+\s*#'], ' ', $str))
-                ->trim()->toString();
+            $cleanOutput = static fn($str) => s($str)
+                ->replace('\u0022', '')
+                ->replaceMatches('/\s+/', ' ')
+                ->replaceMatches('#\s*//+\s*#', ' ')
+                ->trim()
+                ->toString();
 
             $output[] = [
                 'code'    => $process->getExitCodeText(),
