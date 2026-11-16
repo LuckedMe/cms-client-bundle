@@ -17,6 +17,9 @@ use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Attribute\Route;
 
+use function array_filter;
+use function array_unique;
+use function array_values;
 use function htmlspecialchars;
 
 #[AsController]
