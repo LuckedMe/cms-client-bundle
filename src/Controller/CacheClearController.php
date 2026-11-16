@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Vtsot\CmsAdminClientBundle\Controller;
 
 use Exception;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\BufferedOutput;
+use RuntimeException;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
@@ -39,9 +39,13 @@ final class CacheClearController
             throw new AccessDeniedHttpException('Access denied.');
         }
 
-        $application = new Application($kernel);
-        $application->setAutoExit(false);
-        $output = new BufferedOutput();
+        $php = new PhpExecutableFinder()->find();
+        if (false === $php) {
+            throw new RuntimeException('PHP executable not found.');
+        }
+
+        $env     = $kernel->getEnvironment();
+        $console = $kernel->getProjectDir() . '/bin/console';
 
         $pools = [
             'vtsot_cms_admin_client.cache',
@@ -49,16 +53,36 @@ final class CacheClearController
             ...$extraPools,
         ];
 
-        $commands   = [];
-        $commands[] = ['command' => 'cache:clear', '--env' => 'dev'];
-        $commands[] = ['command' => 'cache:clear', '--env' => 'prod'];
-        $commands[] = ['command' => 'cache:pool:clear', '--env' => 'prod', 'pools' => $pools];
-        $commands[] = ['command' => 'cache:pool:clear', '--env' => 'dev', 'pools' => $pools];
+        // Every command runs in its own process with a fresh kernel. Running
+        // cache:clear in-process (several times) on the live kernel breaks it:
+        // the first run switches the kernel to the temporary "pro_" cache
+        // directory, so the next command fails with
+        // 'Unable to write in the ".../var/cache/pro_" directory'.
+        // The environment is the one of the running kernel (the old "--env"
+        // option was ignored by the in-process application anyway).
+        $commands = [
+            ['cache:clear'],
+            ['cache:pool:clear', ...$pools],
+        ];
 
-        foreach ($commands as $arrayInput) {
-            $application->run(new ArrayInput($arrayInput), $output);
+        $output = '';
+        $failed = false;
+        foreach ($commands as $arguments) {
+            $process = new Process(
+                [$php, $console, ...$arguments, '--env=' . $env, '--no-interaction'],
+                $kernel->getProjectDir(),
+                timeout: 120,
+            );
+            $process->run();
+
+            $output .= '$ ' . $process->getCommandLine() . "\n"
+                . $process->getOutput() . $process->getErrorOutput();
+            $failed = $failed || !$process->isSuccessful();
         }
 
-        return new Response('<pre>' . $output->fetch() . '</pre>');
+        return new Response(
+            '<pre>' . htmlspecialchars($output) . '</pre>',
+            $failed ? Response::HTTP_INTERNAL_SERVER_ERROR : Response::HTTP_OK,
+        );
     }
 }
